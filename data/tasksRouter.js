@@ -6,13 +6,24 @@ const tasks= require('../data/dataAcess');
 
 //get all tasks
 router.get('/', (req, res) => {
-  res.status(200).json({message: "success!"});
+  tasks.findTasks()
+    .then( tasks => {
+      res.status(200).json({tasks});
+    } )
+    .catch(error => {
+      res.status(500).json({error: "Could not process your request"});
+    })
 });
 
 //add tasks
-//include proj_name and proj_descr
 router.post('/', (req, res) => {
-  res.status(200).json({message: "success!"});
+  tasks.addTask(req.body)
+  .then( newTask => {
+    res.status(200).json({newTask});
+  } )
+  .catch(error => {
+    res.status(500).json({error: "Could not process your request"});
+  })
 });
 
 module.exports= router;

@@ -10,7 +10,9 @@ module.exports= {
 }
 
 function findTasks(){
-  return db('tasks');
+  return db('tasks as t')
+  .select('t.task_descr', 't.task_notes', 't.completed', 'p.project_name', 'p.project_descr')
+  .join('projects as p', 'p.project_id', 't.project_id');
 }
 
 function findResources(){
