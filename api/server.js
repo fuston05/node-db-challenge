@@ -1,10 +1,10 @@
-const express= require('express');
-const helmet= require('helmet');
-const server= express();
+const express = require('express');
+const helmet = require('helmet');
+const server = express();
 
-const projectsRouter= require('../data/projectsRouter');
-const resourcesRouter= require('../data/resourcesRouter');
-const tasksRouter= require('../data/tasksRouter');
+const projectsRouter = require('../data/projectsRouter');
+const resourcesRouter = require('../data/resourcesRouter');
+const tasksRouter = require('../data/tasksRouter');
 
 server.use(express.json());
 server.use(helmet());
@@ -17,8 +17,8 @@ server.get('/', (req, res) => {
 })//end server.get
 
 //fallback case
-server.use(function notFound(){
-  res.status(404).json({error: "Could not find what you are looking for"});
+server.use(function notFound() {
+  res.status(404).json({ error: "Could not find what you are looking for" });
 });
 
-module.exports= server;
+module.exports = server;
